@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garagem Inteligente - API</title>
+    <!-- Verifique se o nome do arquivo é EXATAMENTE 'style.css'
+         e se ele está na MESMA PASTA que o index.html -->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+    <header>
+        <h1><i class="fas fa-warehouse"></i> Garagem Inteligente</h1>
+    </header>
+
+    <main>
+        <section id="selecao-veiculo">
+            <h2>1. Selecione o Tipo de Veículo</h2>
+            <button data-tipo="carro"><i class="fas fa-car"></i> Carro</button>
+            <button data-tipo="esportivo"><i class="fas fa-car-side"></i> Esportivo</button>
+            <button data-tipo="caminhao"><i class="fas fa-truck"></i> Caminhão</button>
+            <button data-tipo="aviao"><i class="fas fa-plane"></i> Avião</button>
+            <button data-tipo="moto"><i class="fas fa-motorcycle"></i> Moto</button>
+            <button data-tipo="bicicleta"><i class="fas fa-bicycle"></i> Bicicleta</button>
+            <div id="tipoSelecionadoInfo">Nenhum tipo selecionado.</div>
+        </section>
+
+        <div id="detalhes-veiculo-container" style="display: none;">
+
+            <section id="criar-veiculo">
+                 <h2 id="criarModificarTitulo">Criar Novo Veículo</h2>
+                 <form id="formCriarModificar">
+                     <div><label for="modelo">Modelo:</label><input type="text" id="modelo" required></div>
+                     <div><label for="cor">Cor:</label><input type="text" id="cor" required></div>
+                     <div><label for="nickname">Apelido (Opcional):</label><input type="text" id="nickname"></div>
+                     <div><label for="imagem">Imagem:</label><input type="file" id="imagem" accept="image/*"></div>
+
+                     <div id="campoCapacidadeCarga" class="campo-especifico" style="display: none;">
+                         <label for="capacidadeCarga">Capacidade Carga (kg):</label><input type="number" id="capacidadeCarga" min="0">
+                     </div>
+                     <div id="campoEnvergadura" class="campo-especifico" style="display: none;">
+                         <label for="envergadura">Envergadura (m):</label><input type="number" id="envergadura" step="0.1" min="0">
+                     </div>
+                     <div id="campoTipoBicicleta" class="campo-especifico" style="display: none;">
+                         <label for="tipoBicicleta">Tipo Bicicleta:</label>
+                         <select id="tipoBicicleta">
+                             <option value="urbana">Urbana</option>
+                             <option value="montanha">Montanha (MTB)</option>
+                             <option value="estrada">Estrada (Speed)</option>
+                             <option value="hibrida">Híbrida</option>
+                         </select>
+                     </div>
+
+                     <button id="btnCriarVeiculo" type="button"><i class="fas fa-plus-circle"></i> Criar Veículo</button>
+                     <button id="btnCancelarModificar" type="button" style="display: none;"><i class="fas fa-times-circle"></i> Cancelar</button>
+                 </form>
+             </section>
+
+             <section id="informacoes-veiculo">
+                 <h2>Informações <span id="nicknameDisplay" class="nickname-display"></span></h2>
+                 <div id="informacoesVeiculo">Nenhum veículo selecionado.</div>
+                 <img id="imagemExibida" src="" alt="Imagem do Veículo" style="display: none;">
+                 <div id="statusVeiculo" class="status-veiculo status-desligado">N/A</div>
+                 <div id="velocidadeDisplay" class="info-bar">
+                     <i class="fas fa-tachometer-alt"></i> Velocidade: <span id="velocidadeValor">0</span> km/h
+                     <div class="barra-progresso-container"><div class="barra-progresso" id="progressoVelocidade"></div></div>
+                 </div>
+                 <div id="fuelDisplayContainer" class="fuel-display info-bar" style="display: none;">
+                     <i class="fas fa-gas-pump"></i> Combustível: <span id="fuelLevelValor">100</span>%
+                     <div class="barra-progresso-container"><div class="barra-progresso fuel-bar" id="fuelLevelBar"></div></div>
+                 </div>
+                 <div id="cargaAtualDisplay" class="info-bar" style="display: none;"><i class="fas fa-weight-hanging"></i> Carga: <span id="cargaAtualValor">0</span>kg</div>
+                 <div id="altitudeDisplay" class="info-bar" style="display: none;"><i class="fas fa-plane-up"></i> Altitude: <span id="altitudeValor">0</span> m</div>
+                 <button id="btnMostrarModificarForm" style="display: none;"><i class="fas fa-edit"></i> Modificar Detalhes</button>
+             </section>
+
+             <section id="acoes-veiculo">
+                 <h2>Ações</h2>
+                 <button data-acao="ligar" title="Ligar Motor/Sistema" style="display: none;"><i class="fas fa-power-off"></i> Ligar</button>
+                 <button data-acao="desligar" title="Desligar Motor/Sistema" style="display: none;"><i class="fas fa-power-off"></i> Desligar</button>
+                 <button data-acao="acelerar" title="Aumentar Velocidade" style="display: none;"><i class="fas fa-angle-double-up"></i> Acelerar</button>
+                 <button data-acao="frear" title="Diminuir Velocidade" style="display: none;"><i class="fas fa-angle-double-down"></i> Frear</button>
+                 <button data-acao="buzinar" title="Buzinar" style="display: none;"><i class="fas fa-bullhorn"></i> Buzinar</button>
+                 <button data-acao="turbo" title="Ativar Nitro/Potência Extra" style="display: none;"><i class="fas fa-rocket"></i> Turbo</button>
+
+                 <button data-acao="reabastecer" id="btnReabastecer" title="Encher o tanque" style="display: none;"><i class="fas fa-gas-pump"></i> Reabastecer</button>
+                 <button data-acao="carregar" id="btnCarregar" title="Adicionar Carga" style="display: none;"><i class="fas fa-plus-circle"></i> Carregar</button>
+                 <button data-acao="descarregar" id="btnDescarregar" title="Remover Carga" style="display: none;"><i class="fas fa-minus-circle"></i> Descarregar</button>
+                 <button data-acao="decolar" id="btnDecolar" title="Iniciar Voo" style="display: none;"><i class="fas fa-plane-departure"></i> Decolar</button>
+                 <button data-acao="aterrissar" id="btnAterrissar" title="Pousar Avião" style="display: none;"><i class="fas fa-plane-arrival"></i> Aterrissar</button>
+                 <!-- O botão 'verDetalhesAPI' será adicionado/gerenciado pelo JS -->
+             </section>
+
+             <section id="musica-veiculo" style="display:none;">
+                 <h2>Música</h2>
+                 <input type="file" id="musicaInput" accept="audio/*">
+                 <button id="btnTocarMusica" title="Tocar/Pausar Música"><i class="fas fa-play"></i> Tocar</button>
+                 <button id="btnPararMusica" title="Parar Música"><i class="fas fa-stop"></i> Parar</button>
+                 <div id="nomeMusica">Nenhuma música selecionada</div>
+             </section>
+
+             <section id="manutencao-veiculo">
+                 <h2>Manutenção</h2>
+                 <h3>Histórico</h3>
+                 <div id="historicoManutencaoLista" class="lista-manutencao">Nenhum histórico registrado.</div>
+                 <h3>Agendamentos Futuros</h3>
+                 <div id="agendamentosFuturosLista" class="lista-manutencao">Nenhum agendamento futuro.</div>
+                 <h3>Registrar / Agendar Manutenção</h3>
+                 <form id="formAgendarManutencao">
+                     <div><label for="manutencaoData">Data:</label><input type="text" id="manutencaoData" placeholder="Selecione a data..." required></div>
+                     <div><label for="manutencaoTipo">Tipo Serviço:</label><input type="text" id="manutencaoTipo" placeholder="Ex: Troca de óleo" required></div>
+                     <div><label for="manutencaoCusto">Custo (R$):</label><input type="number" id="manutencaoCusto" step="0.01" min="0" placeholder="0.00" required></div>
+                     <div><label for="manutencaoDescricao">Descrição:</label><textarea id="manutencaoDescricao" rows="2" placeholder="(Opcional)"></textarea></div>
+                     <button type="submit"><i class="fas fa-tools"></i> Registrar/Agendar</button>
+                 </form>
+             </section>
+
+            <section id="secaoDetalhesExtrasAPI" class="detalhes-api-container" style="display: none;">
+                <h3><i class="fas fa-cogs"></i> Detalhes Adicionais (API Local)</h3>
+                <div id="detalhesExtrasVeiculoContent">
+                    <p>Clique em "Detalhes API" para carregar informações.</p>
+                </div>
+                <button id="btnFecharDetalhesAPI"><i class="fas fa-times"></i> Fechar Detalhes API</button>
+            </section>
+        </div>
+
+        <!-- SEÇÃO PARA PREVISÃO DO TEMPO -->
+        <section id="previsao-tempo">
+            <h2><i class="fas fa-umbrella-beach"></i> Previsão do Tempo (5 Dias)</h2>
+            <div class="form-previsao">
+                <input type="text" id="cidade-previsao-input" placeholder="Digite o nome da cidade">
+                <button id="verificar-clima-btn"><i class="fas fa-search-location"></i> Ver Previsão</button>
+            </div>
+            <div id="previsao-tempo-resultado">
+                <p>Digite uma cidade e clique em "Ver Previsão" para ver o tempo.</p>
+            </div>
+            <!-- Cole este código no seu arquivo index.html -->
+
+<!-- ... (seu HTML da previsão do tempo) ... -->
+
+<hr>
+
+<section id="dicas-secao">
+    <h2>Dicas de Manutenção</h2>
+    <p>Clique no botão para ver dicas gerais para o seu veículo.</p>
+    
+    <button id="btn-buscar-dicas">Buscar Dicas</button>
+    
+    <div id="dicas-container">
+        <!-- As dicas do backend aparecerão aqui -->
+    </div>
+</section>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <span id="anoAtual"></span> Garagem Inteligente.</p>
+    </footer>
+
+    <div id="notification-area"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+
+    <script src="js/constants.js"></script>
+    <script src="js/apiService.js"></script>
+    <script src="js/Manutencao.js"></script>
+    <script src="js/Veiculo.js"></script>
+    <script src="js/Carro.js"></script>
+    <script src="js/Caminhao.js"></script>
+    <script src="js/CarroEsportivo.js"></script>
+    <script src="js/Aviao.js"></script>
+    <script src="js/Moto.js"></script>
+    <script src="js/Bicicleta.js"></script>
+    <script src="js/principal.js"></script>
+</body>
+</html>

@@ -1,0 +1,691 @@
+/* Seu CSS existente de Garagem Inteligente (chamativo) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #007BFF;
+  --primary-darker: #0056b3;
+  --secondary-color: #E91E63;
+  --secondary-darker: #c2185b;
+  --accent-color: #FFEB3B;
+  --accent-darker: #fdd835;
+  --background-color: #f0f2f5;
+  --section-bg: #ffffff;
+  --text-color: #333;
+  --text-light: #f8f9fa;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+  --shadow-hover-color: rgba(0, 0, 0, 0.15); /* Sombra mais suave no hover */
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8; /* Para status pronta e outros infos */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-darker) 100%);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1.5em 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+header h1 {
+    font-weight: 700;
+    font-size: 2.2em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+header h1 i {
+    margin-right: 10px;
+}
+
+main {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+section {
+  background-color: var(--section-bg);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 10px var(--shadow-color);
+  width: 100%;
+  max-width: 750px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  border-left: 4px solid var(--primary-color);
+  margin-bottom: 20px; /* Adicionado para espaçamento entre seções */
+}
+
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px var(--shadow-hover-color);
+}
+
+section h2 {
+  color: var(--primary-darker);
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 12px;
+  font-weight: 600;
+  font-size: 1.6em;
+  text-align: center;
+}
+section h2 i {
+    margin-right: 8px;
+}
+
+
+section h3 {
+    color: var(--secondary-darker);
+    margin-top: 20px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 6px;
+    font-weight: 500;
+    font-size: 1.25em;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #444; /* Um pouco mais escuro */
+  font-size: 0.9em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+input[type="range"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 0.95em;
+  background-color: #fdfdfd;
+}
+form div { /* Para agrupar label e input */
+    margin-bottom: 12px;
+}
+
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2.5px rgba(0, 123, 255, 0.25);
+}
+
+input[type="file"] {
+    padding: 8px;
+    background-color: #f9f9f9;
+}
+textarea {
+    min-height: 70px;
+    resize: vertical;
+}
+
+
+button {
+  background: linear-gradient(45deg, var(--primary-color) 0%, var(--primary-darker) 100%);
+  color: var(--text-light);
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 3px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 6px var(--shadow-color);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 0.9em;
+}
+
+button:hover {
+  background: linear-gradient(45deg, var(--secondary-color) 0%, var(--secondary-darker) 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 5px 10px var(--shadow-hover-color);
+}
+
+button:active {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+#btnCriarVeiculo {
+  background: linear-gradient(45deg, var(--accent-color) 0%, var(--accent-darker) 100%);
+  color: var(--text-color);
+}
+#btnCriarVeiculo:hover {
+  background: linear-gradient(45deg, var(--accent-darker) 0%, var(--accent-color) 100%);
+}
+
+#btnCancelarModificar,
+button[data-acao="desligar"] { /* Agrupando estilos de botões "perigosos" */
+    background: linear-gradient(45deg, #e74c3c, #c0392b); /* Gradiente vermelho */
+}
+#btnCancelarModificar:hover,
+button[data-acao="desligar"]:hover {
+    background: linear-gradient(45deg, #c0392b, #e74c3c);
+}
+
+
+#formAgendarManutencao button[type="submit"] {
+   background: linear-gradient(45deg, var(--secondary-color) 0%, var(--secondary-darker) 100%);
+}
+#formAgendarManutencao button[type="submit"]:hover {
+   background: linear-gradient(45deg, var(--primary-color) 0%, var(--primary-darker) 100%);
+}
+
+#btnMostrarModificarForm {
+    background: linear-gradient(45deg, #f39c12, #e67e22); /* Gradiente laranja */
+}
+#btnMostrarModificarForm:hover {
+    background: linear-gradient(45deg, #e67e22, #f39c12);
+}
+
+
+#selecao-veiculo button {
+    border-radius: 6px;
+    background: var(--section-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-transform: none;
+    font-weight: 500;
+    padding: 8px 15px;
+}
+#selecao-veiculo button:hover {
+    background: var(--primary-color);
+    color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+#tipoSelecionadoInfo {
+    margin-top: 15px;
+    font-weight: 600;
+    color: var(--primary-darker);
+    text-align: center;
+    font-size: 1.1em;
+}
+
+
+#detalhes-veiculo-container { /* Container que agrupa as seções de detalhes */
+    border: none; /* Remove borda, pois as seções internas já têm */
+    padding: 0; /* Remove padding, pois as seções internas já têm */
+    box-shadow: none; /* Remove sombra, pois as seções internas já têm */
+    background-color: transparent; /* Torna transparente */
+    border-left: none; /* Remove borda lateral */
+}
+#detalhes-veiculo-container > section { /* Estilo para seções DENTRO do container de detalhes */
+    margin-bottom: 20px; /* Espaço entre as sub-seções */
+}
+
+
+#informacoes-veiculo {
+  margin-top: 15px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #f8fcff; /* Um azul bem, bem claro */
+  text-align: center;
+}
+.nickname-display {
+    font-style: italic;
+    color: #555;
+    margin-left: 5px;
+    font-weight: 400;
+}
+
+#imagemExibida {
+  max-width: 80%;
+  max-height: 220px;
+  height: auto;
+  border-radius: 6px;
+  margin: 10px auto 15px auto; /* Centraliza e adiciona margem inferior */
+  border: 2px solid var(--border-color);
+  box-shadow: 0 3px 7px var(--shadow-color);
+  display: block;
+  background-color: #fff; /* Fundo branco caso a imagem seja transparente */
+}
+
+#statusVeiculo {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 0.85em;
+    margin-top: 8px;
+    margin-bottom: 10px; /* Espaço abaixo */
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.status-ligado    { background-color: var(--success-color); box-shadow: 0 0 7px rgba(40, 167, 69, 0.4); }
+.status-desligado { background-color: var(--danger-color); box-shadow: 0 0 7px rgba(220, 53, 69, 0.4); }
+.status-pronta    { background-color: var(--info-color); box-shadow: 0 0 7px rgba(23, 162, 184, 0.4); }
+
+
+.info-bar { /* Classe para agrupar velocidade, combustível, carga, altitude */
+    margin: 10px 0;
+    font-size: 1.05em;
+    font-weight: 500;
+    color: var(--primary-darker);
+    display: flex; /* Para alinhar ícone, texto e barra */
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar em telas menores */
+    gap: 8px; /* Espaço entre elementos */
+}
+.info-bar i {
+    color: var(--secondary-color);
+    margin-right: 3px;
+}
+.info-bar span { /* Para os valores numéricos */
+    color: var(--secondary-darker);
+    font-weight: 600;
+}
+
+.barra-progresso-container { /* Container para a barra */
+  flex-grow: 1; /* Faz a barra ocupar o espaço restante */
+  min-width: 150px; /* Largura mínima para a barra */
+  height: 18px;
+  background-color: #e9ecef;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d4d4d4;
+}
+
+.barra-progresso { /* A barra que preenche */
+  height: 100%;
+  width: 0%;
+  border-radius: 18px;
+  transition: width 0.3s ease-out;
+}
+#progressoVelocidade { background: linear-gradient(90deg, var(--secondary-darker) 0%, var(--secondary-color) 100%); }
+.fuel-bar            { background: linear-gradient(90deg, var(--success-color) 0%, #20bf55 100%); } /* Gradiente verde para combustível */
+
+
+#acoes-veiculo {
+    text-align: center; /* Centraliza os botões */
+}
+#acoes-veiculo button {
+    margin: 8px; /* Mais margem entre botões de ação */
+}
+
+
+#musica-veiculo {
+  text-align: center;
+}
+#musica-veiculo input[type="file"] {
+  margin-bottom: 12px;
+  border: 1px dashed var(--primary-color);
+  padding: 12px;
+}
+#nomeMusica {
+    margin-top: 12px;
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.lista-manutencao {
+  background-color: #fdfdfd;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 10px;
+  min-height: 50px;
+  max-height: 200px; /* Limita altura e adiciona scroll */
+  overflow-y: auto;
+}
+.lista-manutencao p {
+  margin: 8px 0;
+  padding: 8px 5px;
+  border-bottom: 1px dotted #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.9em;
+}
+.lista-manutencao p:last-child { border-bottom: none; }
+.lista-manutencao span.tipo-servico { font-weight: 600; color: var(--primary-color); }
+.lista-manutencao span.custo-servico { font-weight: 500; color: var(--success-color); white-space: nowrap; margin-left: 8px; }
+.lista-manutencao .data-servico { font-style: italic; color: #777; font-size: 0.9em; }
+.lista-manutencao .descricao-servico { color: #555; font-size: 0.85em; margin-left: 10px; flex-basis: 100%; margin-top: 3px;}
+.lista-manutencao .status-agendado { color: #f0ad4e; font-weight: bold; }
+
+
+#formAgendarManutencao { margin-top: 15px; }
+
+
+footer {
+  text-align: center;
+  padding: 1.2em 1em;
+  margin-top: 25px;
+  background: linear-gradient(90deg, var(--primary-darker) 0%, var(--primary-color) 100%);
+  color: var(--text-light);
+  box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  font-size: 0.85em;
+}
+
+#notification-area {
+  position: fixed;
+  bottom: 15px; /* Mais perto da base */
+  right: 15px;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column-reverse; /* Novas notificações aparecem em cima */
+  align-items: flex-end;
+  gap: 10px; /* Espaço entre notificações */
+}
+
+.notification {
+  background-color: rgba(51, 51, 51, 0.95); /* Fundo escuro semi-transparente */
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  opacity: 1;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  min-width: 250px;
+  max-width: 380px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-left: 4px solid transparent; /* Para a cor do tipo */
+  transform: translateX(100%); /* Começa fora da tela */
+  animation: slideInNotification 0.4s forwards;
+}
+
+@keyframes slideInNotification {
+    to { transform: translateX(0); }
+}
+
+
+.notification-success { border-left-color: var(--success-color); background-color: rgba(40, 167, 69, 0.95); }
+.notification-info    { border-left-color: var(--info-color); background-color: rgba(23, 162, 184, 0.95); }
+.notification-warning { border-left-color: #ffc107; background-color: rgba(255, 193, 7, 0.95); color: #333; }
+.notification-error   { border-left-color: var(--danger-color); background-color: rgba(220, 53, 69, 0.95); }
+
+
+/* Estilos para a seção da API */
+.detalhes-api-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #e6f7ff; /* Um azul bem claro para API */
+  border: 1px solid #91d5ff;
+  border-radius: 8px;
+}
+
+.detalhes-api-container h3 {
+  margin-top: 0;
+  color: var(--primary-darker);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 10px;
+  font-size: 1.4em;
+  display: flex; /* Para alinhar ícone e texto */
+  align-items: center;
+  gap: 8px;
+}
+
+#detalhesExtrasVeiculoContent ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#detalhesExtrasVeiculoContent li {
+  padding: 7px 0;
+  border-bottom: 1px dotted #b3e0ff;
+  font-size: 0.9em;
+}
+#detalhesExtrasVeiculoContent li:last-child {
+  border-bottom: none;
+}
+#detalhesExtrasVeiculoContent li strong {
+  color: #005082; /* Azul escuro para labels da API */
+  min-width: 170px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.api-loading-message {
+  color: var(--primary-color);
+  font-style: italic;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.api-error-message {
+  color: var(--danger-color);
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 0;
+}
+
+#btnVerDetalhesAPI { /* Botão específico para API */
+    background: linear-gradient(45deg, var(--info-color), #117a8b); /* Gradiente ciano */
+}
+#btnVerDetalhesAPI:hover {
+    background: linear-gradient(45deg, #117a8b, var(--info-color));
+}
+
+#btnFecharDetalhesAPI {
+    background: linear-gradient(45deg, #6c757d, #5a6268); /* Cinza */
+}
+#btnFecharDetalhesAPI:hover {
+    background: linear-gradient(45deg, #5a6268, #6c757d);
+}
+
+
+@media (max-width: 768px) {
+    main { padding: 10px; gap: 15px;}
+    section { padding: 20px; max-width: 90%; }
+    header h1 { font-size: 1.8em; }
+    section h2 { font-size: 1.4em; }
+    section h3 { font-size: 1.15em; }
+    button { padding: 9px 18px; font-size: 0.85em; }
+    .info-bar { flex-direction: column; align-items: flex-start; }
+    .barra-progresso-container { width: 100%; }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 1.6em; }
+    section h2 { font-size: 1.2em; }
+    input, select, textarea { padding: 8px 10px; font-size: 0.9em; }
+    .lista-manutencao p { flex-direction: column; align-items: flex-start; }
+    .lista-manutencao span.custo-servico { margin-left: 0; margin-top: 4px; }
+    #notification-area { bottom: 10px; right: 10px; width: calc(100% - 20px); max-width: none;}
+    .notification { min-width: 0; width: 100%;}
+}
+/* styles.css */
+/* ... seus estilos existentes ... */
+
+/* Estilos para a Seção de Previsão do Tempo */
+#previsao-tempo {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#previsao-tempo h2 {
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+#previsao-tempo h2 i {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+
+.form-previsao {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+#cidade-previsao-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#verificar-clima-btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+#verificar-clima-btn i {
+    margin-right: 5px;
+}
+
+#verificar-clima-btn:hover {
+    background-color: #0056b3;
+}
+
+#previsao-tempo-resultado h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+}
+#previsao-tempo-resultado h3 i {
+    margin-right: 8px;
+    color: #ffc107; /* Cor para ícone de sol/nuvem */
+}
+
+
+.dias-previsao-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsivo */
+    gap: 15px;
+}
+
+.dia-previsao-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dia-previsao-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dia-previsao-card h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #0056b3;
+}
+
+.dia-previsao-card img {
+    width: 60px; /* Ajuste conforme necessário */
+    height: 60px;
+    margin-bottom: 8px;
+}
+
+.dia-previsao-card .descricao-clima {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 8px;
+    min-height: 30px; /* Para alinhar melhor os cards */
+}
+
+.dia-previsao-card .temperaturas-clima {
+    font-size: 0.9em;
+    color: #333;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.temperaturas-clima .temp-max,
+.temperaturas-clima .temp-min {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.temperaturas-clima .temp-max i { color: #ff6347; } /* Vermelho para máxima */
+.temperaturas-clima .temp-min i { color: #1e90ff; } /* Azul para mínima */
+
+
+.erro-clima {
+    color: #d9534f; /* Vermelho para erros */
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+}
+
+.carregando-clima {
+    color: #31708f; /* Azul para informações */
+    font-style: italic;
+    padding: 10px;
+    background-color: #d9edf7;
+    border: 1px solid #bce8f1;
+    border-radius: 4px;
+    text-align: center;
+}
+.carregando-clima i {
+    margin-right: 8px;
+}
